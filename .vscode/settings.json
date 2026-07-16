@@ -1,0 +1,31 @@
+{
+    "workbench.colorCustomizations": {
+        // Adds a subtle, technical border between the sidebar and editor
+        "sideBar.border": "#3d3d3d",
+        "editorGroup.border": "#3d3d3d",
+        // Makes the status bar more subtle
+        "statusBar.background": "#1a1a1a",
+        "statusBar.foreground": "#888888"
+    },
+    "editor.renderWhitespace": "trailing", // Only shows dots for "dirty" whitespace at the end of lines
+    "editor.guides.indentation": true, // Essential for deep technical nesting{
+    "editor.formatOnSave": true, // Auto-formats your code every time you save
+    "files.autoSave": "afterDelay", // Saves your file automatically when you switch tabs
+    "editor.guides.bracketPairs": "active", // Highlights matching brackets with colors
+    "editor.bracketPairColorization.enabled": true,
+    "editor.linkedEditing": true, // Renaming an HTML tag renames its closing tag too
+    "editor.cursorBlinking": "expand", // Makes the cursor "breathe" in and out smoothly
+    "editor.cursorSmoothCaretAnimation": "on", // The cursor glides smoothly between characters
+    "editor.cursorStyle": "line", // Classic line, but works best with 'expand'
+    "editor.smoothScrolling": true, // Glides the editor when scrolling instead of jumping
+    "terminal.integrated.smoothScrolling": true,
+    "editor.cursorWidth": 2, // Slightly thicker cursor is easier to track
+    "editor.fontSize": 13,
+    "editor.lineHeight": 23, // Adds "breathing room" between lines
+    "editor.letterSpacing": 0.4, // Slight spacing makes text more readable
+    "editor.fontLigatures": true, // Combines symbols like '=>' into single glyphs
+    "editor.minimap.enabled": false, // Disables the tiny map on the right for more space
+    "editor.scrollbar.vertical": "hidden", // Clean look (scrolling still works!)
+    "workbench.list.smoothScrolling": true, // Smooth scrolling in the file explorer
+    "editor.stickyScroll.enabled": true // Keeps the function/class header at the top
+}
