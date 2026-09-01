@@ -1,0 +1,4 @@
+Day 1: Started learning Python file handling.
+Day 2: Practice makes progress.
+Day 3: Building muscle memory.
+Day 4: Mastered append mode!
