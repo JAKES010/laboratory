@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Practice App</title>
+</head>
+
+<body>
+    <h1>JAKES ENTERPRISE</h1>
+    <form action="/submit" method="POST">
+        <input type="text" name="feedback" placeholder="Type something..." required>
+        <button type="submit">SEND</button>
+    </form>
+
+    <ul>
+        {% for message in messages %}
+        <li>
+            {{ message }}
+            <form action="/delete" method="POST" style="display:inline;">
+                <input type="hidden" name="message_to_delete" value="{{ message }}">
+                <button type="submit">^</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
