@@ -24,5 +24,9 @@
 text = "the cat and the hat and the bat"
 my_dict = {}
 for word in text.split():
-    if text not in my_dict:
-        print(text)
+    if word not in my_dict:
+        my_dict[word] = 1
+    else:
+        my_dict[word] +=1
+
+print(my_dict)
