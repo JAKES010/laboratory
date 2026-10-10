@@ -22,8 +22,7 @@
 # print(value)
 
 text = "the cat and the hat and the bat"
-words = text.split()
-value = {}
-if words == text :
-    value[words] = len(words)
-    print(value)#
+my_dict = {}
+for word in text.split():
+    if text not in my_dict:
+        print(text)
