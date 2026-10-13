@@ -25,3 +25,5 @@ if p_command == "ADD":
     with open(file_name, "w") as file :
         json.dump(tsk_list,file)
         print(f"ADDED : {tasks}")
+
+        
