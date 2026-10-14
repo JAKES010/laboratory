@@ -26,7 +26,11 @@ if t_command == "add":
     else:
         tasks = []
 
-    next_id = len(tasks) + 1
+    next_id = 1
+    for task in tasks :
+        next_id = task["id"] 
+        if task["id"] == next_id :
+            next_id+=1
 
     new_task = {
         "id": next_id,
@@ -37,18 +41,25 @@ if t_command == "add":
     }
     
     tasks.append(new_task)
+   
     
     with open(FILENAME, "w") as file:
         json.dump(tasks, file, indent=4)
-    print(f"Task added successfully (ID: {next_id})")
+    print(f"Task added successfully (ID: {new_task["id"]})")
 
 elif t_command == "list":
     if not os.path.exists(FILENAME):
         sys.exit("File does not exist yet. Add a task first!")
+    
+    if len(sys.argv) > 2 :
+        filter_status = sys.argv[2].lower()
         
     with open(FILENAME, "r") as file:
         tasks = json.load(file)
         if not tasks:
             print("No tasks found.")
         for task in tasks:
-            print(f"[{task['status'].upper()}] ID: {task['id']} - {task['description']}")
+            print(f"[{task['status'].upper()}] \nID: {task['id']} \nTasks: {task['description']} \nCreatedAt: {task['createdAt']} \nUpdatedAt: {task['updatedAt']}")
+
+elif t_command == "update":
+    pass
