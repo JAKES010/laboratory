@@ -3,30 +3,52 @@ import os
 import json
 from datetime import datetime
 
+if len(sys.argv) < 2:
+    sys.exit("Usage: python script.py <command> <task_input>") 
 
-if not len(sys.argv) >= 2 :
-    sys.exit("cli_value : <file_name> <command> <task_input>") 
 command = sys.argv[1] 
-task_info = sys.argv[2]
-default_data = {}
 t_command = command.lower()
 
-if t_command == "add" and len(sys.argv) == 3:
-    if not os.path.exists("task_file.json") :
-        with open("task_file.json", "w") as file:
-            json.dump(default_data,file)
+FILENAME = "task_file.json"
+
+if t_command == "add":
+    if len(sys.argv) < 3:
+        sys.exit("Error: Please provide a task description. Example: add 'My task'")
+        
+    task_info = sys.argv[2]
+    
+    if os.path.exists(FILENAME):
+        with open(FILENAME, "r") as file:
+            try:
+                tasks = json.load(file)
+            except json.JSONDecodeError:
+                tasks = [] 
     else:
-        with open("task_file.json" , "r") as file:
-            json.dump()
+        tasks = []
 
-new_task = {
-    "id": 1,
-    "description":task_info,
-    "status":"todo",
-    "createdAt":datetime.now(),
-    "updatedAt":datetime.now(),
-}
+    next_id = len(tasks) + 1
 
-if t_command == "list":
-    if not os.path.exists :
-        os.exit("file does not exist")
+    new_task = {
+        "id": next_id,
+        "description": task_info,
+        "status": "todo",
+        "createdAt": datetime.now().isoformat(),
+        "updatedAt": datetime.now().isoformat(),
+    }
+    
+    tasks.append(new_task)
+    
+    with open(FILENAME, "w") as file:
+        json.dump(tasks, file, indent=4)
+    print(f"Task added successfully (ID: {next_id})")
+
+elif t_command == "list":
+    if not os.path.exists(FILENAME):
+        sys.exit("File does not exist yet. Add a task first!")
+        
+    with open(FILENAME, "r") as file:
+        tasks = json.load(file)
+        if not tasks:
+            print("No tasks found.")
+        for task in tasks:
+            print(f"[{task['status'].upper()}] ID: {task['id']} - {task['description']}")
