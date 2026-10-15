@@ -2,6 +2,8 @@ import sys
 import os
 import json
 from datetime import datetime
+from enum import Enum
+
 
 if len(sys.argv) < 2:
     sys.exit("Usage: python script.py <command> <task_input>") 
@@ -26,11 +28,7 @@ if t_command == "add":
     else:
         tasks = []
 
-    next_id = 1
-    for task in tasks :
-        next_id = task["id"] 
-        if task["id"] == next_id :
-            next_id+=1
+    next_id = max((task["id"] for task in tasks), default=0) + 1
 
     new_task = {
         "id": next_id,
@@ -45,19 +43,46 @@ if t_command == "add":
     
     with open(FILENAME, "w") as file:
         json.dump(tasks, file, indent=4)
-    print(f"Task added successfully (ID: {new_task["id"]})")
+    print(f"Task added successfully (ID: {new_task['id']})")
 
 elif t_command == "list":
     if not os.path.exists(FILENAME):
         sys.exit("File does not exist yet. Add a task first!")
     
+    with open(FILENAME, "r") as file:
+        try:
+            tasks = json.load(file)
+        except json.JSONDecodeError:
+            tasks = []
+
+    if not tasks:
+        print("tasks not found")
+        sys.exit()
+
+    
     if len(sys.argv) > 2 :
         filter_status = sys.argv[2].lower()
-        
-    with open(FILENAME, "r") as file:
-        tasks = json.load(file)
-        if not tasks:
-            print("No tasks found.")
+
+        class TaskStatus(Enum):
+            TODO = "todo"
+            IN_PROGRESS = "in-progress"
+            DONE = "done"
+            
+        try:
+            TaskStatus(filter_status)
+        except ValueError:
+            print(f"Error: '{filter_status}' is not a valid task status.")
+            sys.exit("Please choose from: todo, in-progress, done")
+
+        if filter_status:
+            for task in tasks:
+                if task["status"] == filter_status:
+                    print(f"[{task['status'].upper()}] \nID: {task['id']} \nTasks: {task['description']} \nCreatedAt: {task['createdAt']} \nUpdatedAt: {task['updatedAt']}")
+        else:
+            print(f"No tasks found with status '{filter_status}'.")
+            sys.exit()
+
+    else:
         for task in tasks:
             print(f"[{task['status'].upper()}] \nID: {task['id']} \nTasks: {task['description']} \nCreatedAt: {task['createdAt']} \nUpdatedAt: {task['updatedAt']}")
 
