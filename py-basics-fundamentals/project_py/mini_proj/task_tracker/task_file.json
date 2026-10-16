@@ -1,30 +1,16 @@
 [
     {
+        "id": 1,
+        "description": "buy groceries and cook dinner",
+        "status": "done",
+        "createdAt": "2026-10-16T15:24:04.355843",
+        "updatedAt": "2026-10-16T16:40:43.566377"
+    },
+    {
         "id": 3,
-        "description": "Buy groceries",
-        "status": "in-progress",
-        "createdAt": "2026-10-15T10:39:38.662846",
-        "updatedAt": "2026-10-15T10:39:38.662869"
-    },
-    {
-        "id": 4,
-        "description": "Buy groceries",
-        "status": "in-progress",
-        "createdAt": "2026-10-15T10:39:43.562797",
-        "updatedAt": "2026-10-15T10:39:43.562817"
-    },
-    {
-        "id": 5,
-        "description": "Buy groceries",
-        "status": "done",
-        "createdAt": "2026-10-15T10:40:08.562337",
-        "updatedAt": "2026-10-15T10:40:08.562360"
-    },
-    {
-        "id": 6,
-        "description": "Buy groceries",
-        "status": "done",
-        "createdAt": "2026-10-15T10:40:09.833926",
-        "updatedAt": "2026-10-15T10:40:09.833946"
+        "description": "complete a project",
+        "status": "todo",
+        "createdAt": "2026-10-16T16:36:02.777710",
+        "updatedAt": "2026-10-16T16:36:02.777732"
     }
 ]
